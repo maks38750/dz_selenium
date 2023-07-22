@@ -11,26 +11,29 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-    class BankAppTest {
 
-  WebDriver driver;
+class BankAppTest {
 
-     @BeforeAll
-        static void setupAll() {
-         WebDriverManager.chromedriver().setup();
-}
+    WebDriver driver;
+
+    @BeforeAll
+    static void setupAll() {
+        WebDriverManager.chromedriver().setup();
+    }
 
     @BeforeEach
     void setUp() {
         driver = new ChromeDriver();
     }
-        @AfterEach
-        void tearDown() {
-            driver.quit();
-            driver = null;
-        }
+
+    @AfterEach
+    void tearDown() {
+        driver.quit();
+        driver = null;
+    }
+
     @Test
-    void positivTest () {
+    void positivTest() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id='name'] input")).sendKeys("Арнольд");
         driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+79996521450");
