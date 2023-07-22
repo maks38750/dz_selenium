@@ -10,24 +10,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+ import io.github.bonigarcia.wdm.WebDriverManager;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
     class BankAppTest {
 
-  private WebDriver driver;
+  WebDriver driver;
 
-@BeforeAll
-  public static void setupAll() {
-    System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+     @BeforeAll
+        static void setupAll() {
+         WebDriverManager.chromedriver().setup();
 }
 
     @BeforeEach
     void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-        driver.get("http://localhost:9999");
+        driver = WebDriverManager.chromedriver().create();
+
     }
         @AfterEach
         void tearDown() {
